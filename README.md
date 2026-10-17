@@ -73,3 +73,12 @@ Use the free **WhatsApp Business** app on his number.
 - **GitHub Pages**: in the repository settings, Pages, choose the `main` branch and root folder.
 
 A custom domain (about ₹800 a year) can be added later.
+
+## 6. Link share preview
+
+When the site link is shared on WhatsApp, Facebook, X, LinkedIn or iMessage, it shows `assets/og-image.jpg`: Panditji in the temple arch with lotuses, his name, "Bring peace and prosperity back to your home" and "Book a consultation on WhatsApp".
+
+- The preview tags point to `https://itsdurgeshray.github.io/vaastu-expert-rudraji/`. They only work once the site is live there: in the GitHub repository open Settings, Pages, choose "Deploy from a branch", branch `main`, folder `/ (root)`, and save.
+- If the site moves to its own domain, replace that address in the preview tags at the top of `index.html` (search for `og:`).
+- To change the card, edit `tools/og-card.html` and re-render it (the command is written at the top of that file). The home-screen icon comes from `tools/icon.html`.
+- WhatsApp and Facebook remember old previews for a while. To refresh, paste the link into the Facebook Sharing Debugger and press "Scrape again".

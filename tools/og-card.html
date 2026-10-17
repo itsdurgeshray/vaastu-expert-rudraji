@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Share card</title>
+<!--
+  Source for assets/og-image.jpg (the picture shown when the site link is shared).
+  To regenerate after changing the text below, run from the project folder:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+    --force-device-scale-factor=2 --window-size=1200,630 --virtual-time-budget=10000 \
+    --screenshot=og@2x.png tools/og-card.html
+  then resize og@2x.png to 1200x630 and save it as assets/og-image.jpg (keep it under 300 KB for WhatsApp).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Mukta:wght@400;500;600&family=Noto+Serif+Devanagari:wght@500;600&display=block" rel="stylesheet">
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#FFFBF6}
+.card{position:relative;width:1200px;height:630px;overflow:hidden;background:radial-gradient(42% 66% at 72% 56%,#FBE2D5 0%,rgba(251,226,213,0) 72%),radial-gradient(36% 46% at 100% 0%,rgba(246,200,160,.32),transparent 70%),#FFFBF6;font-family:'Mukta',sans-serif;-webkit-font-smoothing:antialiased}
+.frame{position:absolute;inset:18px;border:1px solid #E6D3BF;border-radius:6px;pointer-events:none;z-index:4}
+.frame::after{content:"";position:absolute;inset:6px;border:1px solid #F0E4D6;border-radius:3px}
+.yantra-bg{position:absolute;width:780px;height:780px;left:862px;top:350px;transform:translate(-50%,-50%);color:#A6765A;opacity:.13}
+.copy{position:absolute;left:84px;top:108px;width:600px;z-index:3}
+.mantra{display:flex;align-items:center;gap:14px;font:500 22px/1.4 'Noto Serif Devanagari',serif;color:#7A1C2A}
+.mantra::after{content:"";width:64px;height:1px;background:linear-gradient(90deg,#BE9A70,transparent)}
+h1{margin:20px 0 0;font:400 60px/1.06 'Marcellus',serif;color:#2D1A13;letter-spacing:-.012em}
+.role{display:flex;align-items:center;gap:12px;margin-top:22px;font:600 16px/1 'Mukta',sans-serif;letter-spacing:.26em;text-transform:uppercase;color:#8E5D4A}
+.role::before{content:"";width:36px;height:1px;background:#BE9A70}
+.tag{margin:20px 0 0;font:400 25px/1.32 'Mukta',sans-serif;color:#5A443A;white-space:nowrap}
+.cta{display:inline-flex;align-items:center;gap:12px;margin-top:30px;height:62px;padding:0 30px 0 24px;border-radius:999px;background:linear-gradient(180deg,#DB5D24,#BB4115);color:#fff;font:600 21px/1 'Mukta',sans-serif;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 16px 30px -14px rgba(187,65,21,.7)}
+.cta svg{width:26px;height:26px;fill:#fff}
+.langs{margin-top:22px;font:500 17px/1 'Mukta',sans-serif;color:#77605A;letter-spacing:.02em}
+.langs .dv{font-family:'Noto Serif Devanagari',serif}
+.portrait{position:absolute;left:672px;bottom:-8px;width:380px;z-index:1;filter:drop-shadow(0 30px 40px rgba(110,50,30,.16))}
+.pond{position:absolute;bottom:-2px;z-index:2}
+.pond-a{left:548px;width:260px}
+.pond-b{left:996px;width:236px}
+.yantra{width:100%;height:100%;overflow:visible}
+.yantra *{vector-effect:non-scaling-stroke}
+.yantra .yb{fill:none;stroke:currentColor;stroke-width:1.1}
+.yantra .yc{fill:none;stroke:currentColor;stroke-width:.9}
+.yantra .yp{fill:currentColor;fill-opacity:.04;stroke:currentColor;stroke-width:.85;stroke-linejoin:round}
+.yantra .yi{fill:none;stroke:currentColor;stroke-width:.55;opacity:.85}
+.yantra .yv{fill:none;stroke:currentColor;stroke-width:.5;opacity:.7}
+.yantra .yt{fill:currentColor;fill-opacity:.05;stroke:currentColor;stroke-width:.9;stroke-linejoin:round}
+.yantra .yd{fill:currentColor;stroke:none}
+.lotus-svg{width:100%;height:auto;overflow:visible;display:block}
+.lotus-svg .lp{stroke:#DC8C9B;stroke-opacity:.5;stroke-width:.55}
+.lotus-svg .lv{fill:none;stroke:#E4A0AC;stroke-width:.45;opacity:.55}
+.lotus-svg .stem{fill:#7F905A}
+.lotus-svg .stem-hi{fill:none;stroke:#B3C38E;stroke-width:.7;opacity:.55}
+.lotus-svg .lfv{fill:none;stroke:#DCE5C4;stroke-width:.6;opacity:.6}
+.lotus-svg .lfu{fill:none;stroke:#8EA16F;stroke-width:.6;opacity:.6}
+.lotus-svg .lfr{fill:none;stroke:#DDE6C6;stroke-width:1;opacity:.8}
+.lotus-svg .water{fill:none;stroke:#D5E0DD;stroke-width:1;stroke-linecap:round;opacity:.8}
+.lotus-svg .petal{transform-box:fill-box;transform-origin:50% 100%;transform:rotate(var(--r))}
+.lotus-svg .sway{transform-origin:var(--ox) var(--oy);transform:rotate(var(--a))}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="lgA" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FFFBF6"/><stop offset=".38" stop-color="#FDECE8"/><stop offset=".66" stop-color="#F6C3C6"/><stop offset=".88" stop-color="#EA8E9E"/><stop offset="1" stop-color="#D45773"/></linearGradient>
+    <linearGradient id="lgB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FBEDEA"/><stop offset=".4" stop-color="#F6D2D2"/><stop offset=".7" stop-color="#EDA6AF"/><stop offset=".9" stop-color="#DE7B8E"/><stop offset="1" stop-color="#C74A68"/></linearGradient>
+    <linearGradient id="lgF" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#FFF3F0"/><stop offset=".72" stop-color="#F9D2D3"/><stop offset=".9" stop-color="#F0A3AE"/><stop offset="1" stop-color="#DC6B82"/></linearGradient>
+    <linearGradient id="lgD" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FCE9E6"/><stop offset=".55" stop-color="#F2B3B9"/><stop offset=".85" stop-color="#E07D90"/><stop offset="1" stop-color="#C8506B"/></linearGradient>
+    <linearGradient id="lgE" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FFF6F3"/><stop offset=".6" stop-color="#F6C6CA"/><stop offset=".9" stop-color="#E58B9C"/><stop offset="1" stop-color="#CF5A73"/></linearGradient>
+    <linearGradient id="lgS" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B9465F" stop-opacity=".28"/><stop offset=".36" stop-color="#B9465F" stop-opacity="0"/><stop offset=".64" stop-color="#B9465F" stop-opacity="0"/><stop offset="1" stop-color="#B9465F" stop-opacity=".2"/></linearGradient>
+    <linearGradient id="lgH" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/><stop offset=".6" stop-color="#FFFFFF" stop-opacity=".25"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+    <radialGradient id="lgGlow"><stop offset="0" stop-color="#FAD0D2" stop-opacity=".6"/><stop offset="1" stop-color="#FAD0D2" stop-opacity="0"/></radialGradient>
+    <radialGradient id="lgLT" cx=".5" cy=".55" r=".62"><stop offset="0" stop-color="#C4D19C"/><stop offset=".55" stop-color="#9DB077"/><stop offset="1" stop-color="#768C5A"/></radialGradient>
+    <linearGradient id="lgLU" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6F8457"/><stop offset="1" stop-color="#536641"/></linearGradient>
+    <radialGradient id="lgP" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#B3C28E"/><stop offset="1" stop-color="#7D9060"/></radialGradient>
+  </defs>
+</svg>
+
+<div class="card">
+  <div class="yantra-bg" id="yantraBg"></div>
+  <div class="frame"></div>
+  <div class="copy">
+    <div class="mantra" lang="sa">ॐ वास्तुपुरुषाय नमः</div>
+    <h1>Pandit Rudra Prasad<br>Upadhyay</h1>
+    <div class="role">Vastu Acharya</div>
+    <p class="tag">Bring peace and prosperity back to your home</p>
+    <div class="cta"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg>Book a consultation on WhatsApp</div>
+    <div class="langs">English · <span class="dv">हिंदी</span> · <span class="dv">नेपाली</span></div>
+  </div>
+
+  <svg class="portrait" viewBox="0 0 440 612" aria-hidden="true">
+    <defs>
+      <clipPath id="archClip"><path d="M30 600V262C30 165 115 112 178 88C202 79 213 60 220 40C227 60 238 79 262 88C325 112 410 165 410 262V600Z"/></clipPath>
+      <linearGradient id="archFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFAF6"/><stop offset=".6" stop-color="#F9E7DE"/><stop offset="1" stop-color="#F1D2C4"/></linearGradient>
+      <radialGradient id="halo" cx="220" cy="318" r="190" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFE0C4" stop-opacity=".95"/><stop offset=".55" stop-color="#FBD3BC" stop-opacity=".35"/><stop offset="1" stop-color="#FBD3BC" stop-opacity="0"/></radialGradient>
+    </defs>
+    <g clip-path="url(#archClip)">
+      <rect width="440" height="612" fill="url(#archFill)"/>
+      <circle cx="220" cy="318" r="190" fill="url(#halo)"/>
+      <g transform="translate(220 318) scale(1.85)" style="color:#B07A5C" opacity=".42"><g class="yantra" id="haloMandala"></g></g>
+      <image href="../assets/panditji.webp" x="14" y="198" width="412" height="408" preserveAspectRatio="xMidYMax meet"/>
+    </g>
+    <path d="M30 600V262C30 165 115 112 178 88C202 79 213 60 220 40C227 60 238 79 262 88C325 112 410 165 410 262V600" fill="none" stroke="#C9A585" stroke-width="1.4"/>
+    <path d="M17 600V259C17 152 106 96 172 71C195 62 208 43 220 20C232 43 245 62 268 71C334 96 423 152 423 259V600" fill="none" stroke="#C9A585" stroke-width=".8"/>
+    <g fill="#C9A585"><circle cx="220" cy="12" r="3.2"/><path d="M220 0.5c-2.6 3.4-3.6 6-3.6 8h7.2c0-2-1-4.6-3.6-8Z"/></g>
+  </svg>
+
+  <div class="pond pond-a" id="pondA"></div>
+  <div class="pond pond-b" id="pondB"></div>
+</div>
+
+<script>
+/* same drawing code as the website (index.html), without animation */
+const f2 = n => +n.toFixed(2);
+function yPetal(r1, r2, w) {
+  const m = r1 + (r2 - r1) * 0.55;
+  return `M${-w} ${-r1}C${-w} ${f2(-m)} ${f2(-w * 0.42)} ${f2(-(r2 - (r2 - r1) * 0.06))} 0 ${-r2}C${f2(w * 0.42)} ${f2(-(r2 - (r2 - r1) * 0.06))} ${w} ${f2(-m)} ${w} ${-r1}`;
+}
+function petalRing(n, r1, r2, o = {}) {
+  const w = f2(o.w ?? r1 * Math.sin(Math.PI / n) * 1.04);
+  const outer = yPetal(r1, r2, w);
+  const inner = yPetal(f2(r1 + (r2 - r1) * 0.16), f2(r2 - (r2 - r1) * 0.2), f2(w * 0.58));
+  let s = '';
+  for (let i = 0; i < n; i++) {
+    s += `<g transform="rotate(${f2((i + (o.off || 0)) * 360 / n)})"><path d="${outer}Z" class="yp"/>`;
+    if (o.inner !== false) s += `<path d="${inner}" class="yi"/>`;
+    if (o.vein) s += `<path d="M0 ${-r1}V${f2(-(r1 + (r2 - r1) * 0.5))}" class="yv"/>`;
+    if (o.drop) s += `<circle cy="${f2(-(r1 + (r2 - r1) * 0.3))}" r="${f2(w * 0.07)}" class="yd"/>`;
+    s += '</g>';
+  }
+  return s;
+}
+const ycirc = (...rs) => rs.map(r => `<circle r="${r}" class="yc"/>`).join('');
+function ydots(n, r, size) {
+  let s = '';
+  for (let i = 0; i < n; i++) { const a = i * 2 * Math.PI / n; s += `<circle cx="${f2(Math.sin(a) * r)}" cy="${f2(-Math.cos(a) * r)}" r="${size}" class="yd"/>`; }
+  return s;
+}
+function tri(R, rot) {
+  const p = [0, 120, 240].map(d => { const a = (d + rot - 90) * Math.PI / 180; return `${f2(R * Math.cos(a))} ${f2(R * Math.sin(a))}`; });
+  return `<path d="M${p.join('L')}Z" class="yt"/>`;
+}
+function bhupuraPath(S, a, b, c, e, d) {
+  const y0 = -(S - d), y1 = -(S + b + d), y2 = -(S + b + e - d), A = a - d, G = c - d, Sd = S - d;
+  const side = [[-Sd, y0], [-A, y0], [-A, y1], [-G, y1], [-G, y2], [G, y2], [G, y1], [A, y1], [A, y0]];
+  const pts = [];
+  for (let k = 0; k < 4; k++) side.forEach(([x, y]) => { let X = x, Y = y; for (let r = 0; r < k; r++) [X, Y] = [-Y, X]; pts.push(`${f2(X)} ${f2(Y)}`); });
+  return `M${pts.join('L')}Z`;
+}
+function cornerLotus() {
+  let s = '';
+  for (let k = 0; k < 4; k++) s += `<g transform="rotate(${45 + k * 90}) translate(0 -88)">${[-38, 0, 38].map(r => `<path d="${yPetal(0, r ? 7 : 9, r ? 2.4 : 3)}Z" class="yp" transform="rotate(${r})"/>`).join('')}<circle r="1" class="yd"/></g>`;
+  return s;
+}
+const CORE = `${ycirc(25, 23.6)}${tri(22.6, 0)}${tri(22.6, 180)}${ycirc(9.5)}${tri(7.4, 180)}<circle r="1.3" class="yd"/>`;
+const YANTRA = `${[0, 3.2, 6.4].map(d => `<path d="${bhupuraPath(78, 11, 3, 24, 17, d)}" class="yb"/>`).join('')}${cornerLotus()}${ycirc(68.5, 64.6)}${ydots(96, 66.55, .45)}${petalRing(16, 46, 63.5, { vein: true })}${ydots(16, 62.2, .45)}${ycirc(46, 44.4)}${petalRing(8, 25, 44, { vein: true, drop: true })}${CORE}`;
+const MANDALA = `${ycirc(99.4, 95.8)}${ydots(120, 97.6, .45)}${petalRing(48, 86, 95.8, { inner: false })}${ycirc(86, 84.4)}${petalRing(24, 64, 80, { off: .5, inner: false })}${petalRing(24, 64, 84.4, { vein: true })}${ycirc(64)}${ydots(72, 62, .55)}${ycirc(60)}${petalRing(16, 42, 60, { vein: true, drop: true })}${ycirc(42, 40.4)}${petalRing(8, 25, 40.4, { vein: true, drop: true })}${CORE}`;
+document.getElementById('yantraBg').innerHTML = `<svg class="yantra" viewBox="-100 -100 200 200">${YANTRA}</svg>`;
+document.getElementById('haloMandala').innerHTML = MANDALA;
+
+const petalD = (L, W) => `M0 0C${f2(W * .95)} ${f2(-L * .08)} ${f2(W * 1.12)} ${f2(-L * .52)} ${f2(W * .32)} ${f2(-L * .9)}Q${f2(W * .12)} ${f2(-L * .97)} ${f2(W * .04)} ${-L}Q${f2(-W * .1)} ${f2(-L * .96)} ${f2(-W * .3)} ${f2(-L * .88)}C${f2(-W * 1.08)} ${f2(-L * .5)} ${f2(-W * .9)} ${f2(-L * .06)} 0 0Z`;
+function petal(rot, L, W, tone, dy, still) {
+  const d = petalD(L, W);
+  let veins = '';
+  [-.52, -.24, 0, .24, .52].forEach(k => { veins += `M0 ${f2(-L * .07)}Q${f2(W * k * 1.15)} ${f2(-L * .45)} ${f2(W * k * .42)} ${f2(-L * .86)}`; });
+  const body = `<path d="${d}" fill="url(#lg${tone})" class="lp"/><path d="${d}" fill="url(#lgS)"/><path d="${petalD(L * .72, W * .42)}" fill="url(#lgH)"/><path d="${veins}" class="lv"/>`;
+  return still ? `<g transform="translate(0 ${dy}) rotate(${rot})">${body}</g>` : `<g transform="translate(0 ${dy})"><g class="petal" style="--r:${rot}deg">${body}</g></g>`;
+}
+const POD = (() => {
+  let st = '';
+  for (let i = -6; i <= 6; i++) { const x = i * 2.1; st += `M${f2(x)} 1L${f2(x * 1.35)} ${f2(-10 - (6 - Math.abs(i)) * .6)}`; }
+  return `<g transform="translate(0 -26)"><path d="${st}" stroke="#E0AE48" stroke-width="1.1" stroke-linecap="round" fill="none"/><path d="M-11 2C-11 -5 11 -5 11 2C11 6 -11 6 -11 2Z" fill="#CDBB5E"/><ellipse cy="-1.5" rx="9" ry="2.6" fill="#E8DA8E"/></g>`;
+})();
+const PETALS = [[-42, 80, 19, 'B', 1], [42, 80, 19, 'B', 1], [-15, 86, 20, 'B', 0], [15, 86, 20, 'B', 0], [-80, 62, 21, 'A', 10], [80, 62, 21, 'A', 10], [-62, 74, 22, 'A', 7], [62, 74, 22, 'A', 7], 'POD', [-7, 64, 12, 'A', 2], [7, 64, 12, 'A', 2], [-38, 88, 23, 'A', 6], [38, 88, 23, 'A', 6], [-19, 94, 24, 'F', 9], [19, 94, 24, 'F', 9], [0, 99, 26, 'F', 10]];
+const FLOWER = `<ellipse cy="-50" rx="80" ry="60" fill="url(#lgGlow)"/>` + PETALS.map(p => p === 'POD' ? POD : petal(p[0], p[1], p[2], p[3], p[4])).join('') + `<path d="M-12 12C-7 3 7 3 12 12C7 18 -7 18 -12 12Z" fill="#8FA066"/>`;
+const BUD = petal(-13, 62, 15, 'D', 2, true) + petal(13, 62, 15, 'D', 2, true) + petal(0, 72, 18, 'E', 4, true)
+  + `<path d="M-13 8C-17 -6 -9 -16 -3 -21C-5 -9 -7 0 -13 8Z" fill="#8FA066"/><path d="M13 8C17 -6 9 -16 3 -21C5 -9 7 0 13 8Z" fill="#8FA066"/><path d="M-8 8C-4 3 4 3 8 8C4 12 -4 12 -8 8Z" fill="#7F905A"/>`;
+function leafSVG(seed, ry) {
+  const R = 60, cy = -30, N = 56, ph = seed * 2.3;
+  const P = tt => { const w = 1 + .045 * Math.sin(tt * 7 + ph) + .025 * Math.sin(tt * 13 + ph * 1.7); return [f2(R * Math.cos(tt) * w), f2(cy + ry * Math.sin(tt) * w + 2.2 * Math.sin(tt * 9 + ph))]; };
+  const rim = [];
+  for (let i = 0; i < N; i++) rim.push(P(i * 2 * Math.PI / N));
+  const front = rim.slice(0, N / 2 + 1);
+  const [ax, ay] = front[0], [bx, by] = front[N / 2];
+  const under = `M${bx} ${by}C${f2(bx * .96)} ${f2(by + 22)} -26 0 0 0C26 0 ${f2(ax * .96)} ${f2(ay + 22)} ${ax} ${ay}L${front.map(q => q.join(' ')).join('L')}Z`;
+  let uv = '', tv = '';
+  for (let i = 3; i < N / 2; i += 4) uv += `M0 0L${front[i].join(' ')}`;
+  for (let i = 0; i < N; i += 4) { const [x, y] = rim[i]; tv += `M0 ${cy}Q${f2(x * .5)} ${f2(cy + (y - cy) * .5 + 1.5)} ${x} ${y}`; }
+  return `<path d="${under}" fill="url(#lgLU)"/><path d="${uv}" class="lfu"/><path d="M${rim.map(q => q.join(' ')).join('L')}Z" fill="url(#lgLT)"/><path d="${tv}" class="lfv"/><ellipse cy="${cy}" rx="3.4" ry="${f2(ry * .14 + .6)}" fill="#D7E0B9"/><path d="M${front.map(q => q.join(' ')).join('L')}" class="lfr"/>`;
+}
+const PAD = w => {
+  const h = f2(w * .16);
+  let v = '';
+  for (let a = 25; a < 170; a += 24) { const r = a * Math.PI / 180; v += `M0 ${f2(-h * .1)}L${f2(w * .9 * Math.cos(r))} ${f2(h * .85 * Math.sin(r))}`; }
+  return `<path d="M0 ${f2(-h * .1)}L${f2(-w * .12)} ${f2(-h * .98)}A${w} ${h} 0 1 0 ${f2(w * .12)} ${f2(-h * .98)}Z" fill="url(#lgP)"/><path d="${v}" class="lfv"/><path d="M${-w} 0A${w} ${h} 0 0 0 ${w} 0" class="lfr"/>`;
+};
+const stem = (x0, Y, cx, cy, x1, y1) => `<path d="M${f2(x0 - 1.9)} ${Y}Q${f2(cx - 1.5)} ${cy} ${f2(x1 - 1.1)} ${y1}L${f2(x1 + 1.1)} ${y1}Q${f2(cx + 1.5)} ${cy} ${f2(x0 + 1.9)} ${Y}Z" class="stem"/><path d="M${f2(x0 - .4)} ${Y}Q${f2(cx - .4)} ${cy} ${f2(x1 - .3)} ${y1}" class="stem-hi"/>`;
+function plant(p, Y) {
+  const cx = f2((p.x0 + p.x1) / 2 + (p.bend || 0)), cy = f2((Y + p.y1) / 2);
+  const head = p.kind === 'flower' ? FLOWER : p.kind === 'bud' ? BUD : leafSVG(p.seed ?? p.x0 / 37, p.ry ?? 18);
+  return `<g>${stem(p.x0, Y, cx, cy, p.x1, p.y1)}<g transform="translate(${p.x1} ${p.y1}) rotate(${p.rot || 0}) scale(${p.s})">${head}</g></g>`;
+}
+function pond(P) {
+  const Y = P.h - 14;
+  let s = `<svg class="lotus-svg" viewBox="0 0 ${P.w} ${P.h}">`;
+  s += P.plants.filter(p => p.kind === 'leaf').map(p => plant(p, Y)).join('');
+  s += P.plants.filter(p => p.kind !== 'leaf').map(p => plant(p, Y)).join('');
+  s += P.pads.map(([x, sc]) => `<g transform="translate(${x} ${Y + 4}) scale(${sc})">${PAD(46)}</g>`).join('');
+  s += `<path d="M${P.w * .08} ${Y + 9}h${P.w * .18}M${P.w * .42} ${Y + 12}h${P.w * .22}M${P.w * .74} ${Y + 8}h${P.w * .14}" class="water"/>`;
+  return s + '</svg>';
+}
+document.getElementById('pondA').innerHTML = pond({ w: 320, h: 300, plants: [
+  { kind: 'leaf', x0: 74, x1: 58, y1: 200, s: 1.1, rot: -10, bend: -8, ry: 17 },
+  { kind: 'bud', x0: 250, x1: 262, y1: 168, s: .82, rot: 8, bend: 8 },
+  { kind: 'flower', x0: 160, x1: 172, y1: 128, s: 1.02, rot: 3, bend: 12 }
+], pads: [[34, .8], [210, .95], [300, .6]] });
+document.getElementById('pondB').innerHTML = pond({ w: 300, h: 300, plants: [
+  { kind: 'leaf', x0: 230, x1: 246, y1: 200, s: 1.1, rot: 10, bend: 8, ry: 18 },
+  { kind: 'flower', x0: 120, x1: 108, y1: 140, s: .92, rot: -4, bend: -12 }
+], pads: [[40, .8], [170, 1], [280, .7]] });
+</script>
+</body>
+</html>
